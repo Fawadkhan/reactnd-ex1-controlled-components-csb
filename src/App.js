@@ -1,8 +1,18 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    echo: ""
+  };
+  updateEcho = e => {
+    const echo = e.target.value;
+    this.setState(prevState => ({
+      echo: echo.trim()
+    }));
+  };
   render() {
+    const { echo } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -12,9 +22,18 @@ class App extends Component {
         </header>
         <main className="App-main">
           <div className="container">
-            <input type="text" placeholder="Say Something" />
+            <input
+              type="text"
+              placeholder="Say Something"
+              value={echo}
+              onChange={this.updateEcho}
+            />
             <p className="echo">Echo:</p>
-            <p>This should mirror the text you typed into the input field.</p>
+            {echo === "" ? (
+              <p>This should mirror the text you typed into the input field.</p>
+            ) : (
+              <p>{echo}</p>
+            )}
           </div>
         </main>
       </div>
