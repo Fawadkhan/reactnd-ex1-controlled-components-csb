@@ -3,16 +3,16 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    echo: ""
+    value: ""
   };
-  updateEcho = e => {
-    const echo = e.target.value;
+  handleChange = e => {
+    const value = e.target.value;
     this.setState(prevState => ({
-      echo: echo.trim()
+      value
     }));
   };
   render() {
-    const { echo } = this.state;
+    const { value } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -25,14 +25,14 @@ class App extends Component {
             <input
               type="text"
               placeholder="Say Something"
-              value={echo}
-              onChange={this.updateEcho}
+              value={value}
+              onChange={this.handleChange}
             />
             <p className="echo">Echo:</p>
-            {echo === "" ? (
+            {value === "" ? (
               <p>This should mirror the text you typed into the input field.</p>
             ) : (
-              <p>{echo}</p>
+              <p>{value}</p>
             )}
           </div>
         </main>
